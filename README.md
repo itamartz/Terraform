@@ -25,3 +25,10 @@ clear; terraform apply -auto-approve
 terraform destroy -auto-approve
 ```
 
+# Git
+## Commands
+
+```git
+git config --global user.email "i0546746147@gmail.com"
+git config --global user.name "Itamar Tziger"
+```
