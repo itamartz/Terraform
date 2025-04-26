@@ -12,7 +12,7 @@ clear; terraform init
 
 ### Plan
 ```terraform
-clear; terraform plan
+clear; terraform plan -out=tfplan
 ```
 
 ### Apply
