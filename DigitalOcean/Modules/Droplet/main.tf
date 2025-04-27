@@ -11,7 +11,7 @@ resource "digitalocean_droplet" "droplet_example" {
   name     = var.server_name
   region   = var.digitalocean_region
   size     = var.droplet_size
-  ssh_keys = [var.digitalocean_ssh_key] #["${var.ssh_key_id}"]
+  ssh_keys = ["${var.digitalocean_ssh_id}"] #["${var.ssh_key_id}"]
   tags     = var.droplet_tags
 
   volume_ids = [digitalocean_volume.volume_1.id]

@@ -1,5 +1,5 @@
 
-variable "digitalocean_ssh_key" {
+variable "digitalocean_ssh_id" {
   description = "SSH key to be used for the droplet"
   type        = string
   default     = "default"  
