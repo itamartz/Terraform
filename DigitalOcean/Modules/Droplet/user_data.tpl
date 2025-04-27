@@ -10,8 +10,6 @@ home: /opt/splunk
 lock_passwd: true
 runcmd:
 
-%{ if tailscale_auth_key != null }
-
     - echo "install tailscale"
     - curl -fsSL https://tailscale.com/install.sh | sh
     - sed -i '/^ExecStopPost=/ s|--cleanup|logout --cleanup|' /usr/lib/systemd/system/tailscaled.service
@@ -19,7 +17,6 @@ runcmd:
     - ['sh', '-c', "echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf && echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf && sudo sysctl -p /etc/sysctl.d/99-tailscale.conf" ]
     - tailscale up --ssh --accept-routes --authkey=${tailscale_auth_key}
     - tailscaled -state=mem
-%{ endif }
 
     - echo "install splunk"
     - export PATH=$PATH:/usr/bin
@@ -47,6 +44,6 @@ runcmd:
     - chown root:root /etc/polkit-1/rules.d/10-Splunkd.rules
     - echo "about to run /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd ${splunk_admin_password}"
     - /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd ${splunk_admin_password}
-    - systemctl stop Splunkd
+    - /opt/splunk/bin/splunk stop
     - /opt/splunk/bin/splunk enable boot-start --answer-yes -systemd-managed 1 -user splunk
     - /opt/splunk/bin/splunk start

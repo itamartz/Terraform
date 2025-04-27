@@ -25,6 +25,7 @@ resource "digitalocean_droplet" "droplet_example" {
       volume_filesystem_type = var.digitalocean_volume_initial_filesystem_type, 
       volume_size = var.digitalocean_volume_size
     })
+    
 }
 
 data "digitalocean_domain" "domain" {
