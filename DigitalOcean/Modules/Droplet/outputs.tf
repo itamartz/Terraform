@@ -1,4 +1,4 @@
 
-# output "digitalocean_droplet" {
-#   value = digitalocean_droplet.example.*
-# }
+output "digitalocean_droplet" {
+  value = digitalocean_droplet.example.*
+}
