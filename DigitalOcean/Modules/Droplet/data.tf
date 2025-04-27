@@ -1,3 +1,3 @@
 data "digitalocean_ssh_key" "terraform" {
-  name = "itamar_ssh_key"
+  name = var.digitalocean_ssh_key
 }
