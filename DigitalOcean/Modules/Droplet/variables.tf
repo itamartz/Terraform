@@ -17,6 +17,7 @@ variable "server_name" {
   default     = "example"
 }
 
+## Volume variables
 variable "digitalocean_volume_size" {
   description = "Size of the volume in GB"
   type        = number
@@ -29,6 +30,25 @@ variable "digitalocean_volume_initial_filesystem_type" {
   default     = "ext4"
 }
 
+variable "droplet_image" {
+  description = "Image for the droplet"
+  type        = string
+  default     = "centos-stream-9-x64" # "ubuntu-24-04-x64"
+}
+
+variable "droplet_size" {
+  description = "Size of the droplet"
+  type        = string
+  default     = "s-4vcpu-8gb"
+}
+
+variable "droplet_tags" {
+  description = "Tags for the droplet"
+  type        = set(string)
+  default     = null
+}
+
+
 ## Tailscale variables
 variable "tailscale_auth_key" {
   description = "Tailscale auth key"
@@ -36,10 +56,31 @@ variable "tailscale_auth_key" {
   default     = "null"
 }
 
+## DNS variables
+variable "domain_name" {
+  description = "Domain name for the droplet"
+  type        = string
+  default     = "0546746147.com"
+}
+
+variable "server_record_ttl" {
+  description = "TTL for the Splunk record"
+  type        = number
+  default     = 3600
+}
 
 ## Splunk variables
 variable "splunk_admin_password" {
   description = "splunk admin password"
   type        = string
   default     = "1c43b41b-65e4-4325-9717-8a62bbc28b2e"
+}
+
+variable "server_role" {
+  type        = string
+  description = "Splunk Role"
+  validation {
+    condition     = contains(["cms", "idx", "shc"], var.server_role)
+    error_message = "environment must be one of: dev, staging, prod."
+  }
 }
