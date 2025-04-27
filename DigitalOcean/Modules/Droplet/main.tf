@@ -31,7 +31,7 @@ data "digitalocean_domain" "domain" {
   name = var.domain_name  
 }
 
-resource "digitalocean_record" "splunk_record" {
+resource "digitalocean_record" "record" {
   domain = var.domain_name
   name   = var.server_name
   type   = "A"

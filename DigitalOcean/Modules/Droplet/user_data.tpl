@@ -33,16 +33,16 @@ runcmd:
     - echo "about to run tar xzvf splunk-9.4.1-e3bdab203ac8-linux-amd64.tgz -C /opt/"
     - tar xzvf splunk-9.4.1-e3bdab203ac8-linux-amd64.tgz -C /opt/
     - |
-cat <<EOF > /etc/polkit-1/rules.d/10-Splunkd.rules
-polkit.addRule(function(action, subject) {
-    if (action.id == "org.freedesktop.systemd1.manage-units" &&
-        action.lookup("unit") == "Splunkd.service" &&
-        subject.user == "splunk")
-    {
-        return polkit.Result.YES;
-    }
-});
-EOF
+        cat <<EOF > /etc/polkit-1/rules.d/10-Splunkd.rules
+        polkit.addRule(function(action, subject) {
+            if (action.id == "org.freedesktop.systemd1.manage-units" &&
+                action.lookup("unit") == "Splunkd.service" &&
+                subject.user == "splunk")
+            {
+                return polkit.Result.YES;
+            }
+        });
+        EOF
     - chmod 644 /etc/polkit-1/rules.d/10-Splunkd.rules
     - chown root:root /etc/polkit-1/rules.d/10-Splunkd.rules
     - echo "about to run /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd ${splunk_admin_password}"
