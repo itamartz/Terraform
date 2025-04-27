@@ -29,6 +29,6 @@ terraform destroy -auto-approve
 ## Commands
 
 ```git
-git config --global user.email "i0546746147@gmail.com"
+git config --global user.email "my_gmail@gmail.com"
 git config --global user.name "Itamar Tziger"
 ```
