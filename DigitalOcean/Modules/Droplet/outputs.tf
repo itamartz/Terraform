@@ -1,4 +1,4 @@
 
 output "digitalocean_droplet" {
-  value = digitalocean_droplet.example.*
+  value = digitalocean_droplet.droplet_example.*
 }
