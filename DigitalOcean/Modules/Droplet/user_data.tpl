@@ -40,10 +40,6 @@ runcmd:
             }
         });
         EOF
-    - chmod 644 /etc/polkit-1/rules.d/10-Splunkd.rules
-    - chown root:root /etc/polkit-1/rules.d/10-Splunkd.rules
+
     - echo "about to run /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd ${splunk_admin_password}"
     - /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd ${splunk_admin_password}
-    - /opt/splunk/bin/splunk stop
-    - /opt/splunk/bin/splunk enable boot-start --answer-yes -systemd-managed 1 -user splunk
-    - /opt/splunk/bin/splunk start
