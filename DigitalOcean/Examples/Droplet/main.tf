@@ -20,7 +20,7 @@ module "digitalocean_droplet_splidx01" {
   server_name         = "splidx01"
   digitalocean_ssh_id = "46839414" # doctl compute ssh-key list --format ID,Name --no-header
   server_role         = "cms"
-  droplet_tags        = ["splunk", "splidx01"]
+  droplet_tags        = ["splunk","splidx","splidx01"]
 }
 output "digitalocean_droplet_splidx01" {
   value = module.digitalocean_droplet_splidx01.*
@@ -31,7 +31,7 @@ module "digitalocean_droplet_splidx02" {
   server_name         = "splidx02"
   digitalocean_ssh_id = "46839414" # doctl compute ssh-key list --format ID,Name --no-header
   server_role         = "cms"
-  droplet_tags        = ["splunk", "splidx02"]
+  droplet_tags        = ["splunk","splidx","splidx02"]
 }
 output "digitalocean_droplet_splidx02" {
   value = module.digitalocean_droplet_splidx02.*

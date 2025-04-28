@@ -7,23 +7,17 @@ terraform {
   }
 }
 
-data "digitalocean_droplet" "splidx01" {
-  tag = "splidx01"
-}
-output "droplet_splidx01" {
-  value = data.digitalocean_droplet.splidx01.*
-}
-
-data "digitalocean_droplet" "splidx02" {
-  tag = "splidx02"
-}
-output "droplet_splidx02" {
-  value = data.digitalocean_droplet.splidx02.*
+data "digitalocean_droplets" "splidx" {
+  filter {
+    key    = "tags"
+    values = ["splidx"]
+  }
 }
 
 resource "digitalocean_loadbalancer" "public" {
-  name   = "splunk-lb-1"
+  name   = "splunk"
   region = "nyc3"
+  size_unit = 2
 
   forwarding_rule {
     entry_port     = 8443
@@ -44,9 +38,10 @@ resource "digitalocean_loadbalancer" "public" {
     cookie_ttl_seconds = 3600
   }
 
-  droplet_ids = [data.digitalocean_droplet.splidx01.id, data.digitalocean_droplet.splidx02.id]
+  droplet_ids = toset(data.digitalocean_droplets.splidx.droplets.*.id)
 }
-output "loadbalancer_public" {
+
+output "loadbalancer" {
   value = digitalocean_loadbalancer.public.*
 }
 
