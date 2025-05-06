@@ -1,0 +1,48 @@
+bastion:
+  ssh_id: "46839414"
+  role: "bastion"
+  tags:
+    - "splunk"
+    - "bastion"
+cms:
+  ssh_id: "46839414"
+  role: "cms"
+  tags:
+    - "splunk"
+    - "splcms"
+splidx01:
+  ssh_id: "46839414"
+  role: "idx"
+  tags:
+    - "splunk"
+    - "splidx01"
+    - "indexer"
+splidx02:
+  ssh_id: "46839414"
+  role: "idx"
+  tags:
+    - "splunk"
+    - "splidx02"
+    - "indexer"
+splshc01:
+  ssh_id: "46839414"
+  role: "shc"
+  tags:
+    - "splunk"
+    - "splshc01"
+    - "searchhead"
+splshc02:
+  ssh_id: "46839414"
+  role: "shc"
+  tags:
+    - "splunk"
+    - "splshc02"
+    - "searchhead"
+splshc03:
+  ssh_id: "46839414"
+  role: "shc"
+  tags:
+    - "splunk"
+    - "splshc03"
+    - "searchhead"
+# digitalocean_ssh_id -> doctl compute ssh-key list --format ID,Name --no-header

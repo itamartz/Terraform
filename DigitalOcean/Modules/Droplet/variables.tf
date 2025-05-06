@@ -80,7 +80,7 @@ variable "server_role" {
   type        = string
   description = "Splunk Role"
   validation {
-    condition     = contains(["cms", "idx", "shc"], var.server_role)
-    error_message = "environment must be one of: dev, staging, prod."
+    condition     = contains(["cms", "idx", "shc","bastion"], var.server_role)
+    error_message = "server_role must be one of: cms, idx, shc, bastion."
   }
 }
